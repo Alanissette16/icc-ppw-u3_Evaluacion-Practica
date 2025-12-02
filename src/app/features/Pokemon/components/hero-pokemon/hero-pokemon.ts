@@ -1,12 +1,16 @@
-import { Component, input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-hero-pokemon',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './hero-pokemon.html',
-  styleUrl: './hero-pokemon.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroPokemon {
   pokemoncount = input.required<number>();
   totalPages = input.required<number>();
+  currentPage = input.required<number>();
 }

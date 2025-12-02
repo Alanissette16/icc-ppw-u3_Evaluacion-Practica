@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomePage } from './features/HomePage/home-page/home-page';
 import { Login } from './features/inicioSesion/login/login';
+import { PokemonDetailPage } from './features/Pokemon/pokemon-detail/pokemon-detail/pokemon-detail';
+
 
 export const routes: Routes = [
   {
@@ -21,9 +23,8 @@ export const routes: Routes = [
 
   {
     path: "pokemon/:id",
-    // component: PokemonDetailComponent  <- cuando lo tengas
+    component: PokemonDetailPage
   },
-
   {
     path: "**",
     redirectTo: "login"

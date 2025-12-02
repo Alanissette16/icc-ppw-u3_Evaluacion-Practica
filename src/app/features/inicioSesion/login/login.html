@@ -1,40 +1,67 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<section class="min-h-screen flex items-center justify-center bg-base-200 p-4">
+  <article class="card w-full max-w-sm bg-base-100 shadow-xl">
+    <header class="card-body">
+      <h1 class="card-title text-3xl justify-center mb-6">Iniciar Sesión</h1>
 
-  <!-- Email -->
-  <div class="mb-3">
-    <label>Email</label>
-    <input
-      formControlName="email"
-      class="form-control"
-      placeholder="usuario@ups.edu.ec">
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="space-y-4">
 
-    @if (formUtils.isValidField(myForm, 'email')) {
-      <span class="form-text text-danger">
-        {{ formUtils.getFieldError(myForm, 'email') }}
-      </span>
-    }
-  </div>
+        <div class="form-control">
+          <label class="label" for="email">
+            <span class="label-text">Email</span>
+          </label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="usuario@ups.edu.ec"
+            class="input input-bordered w-full"
+            [ngClass]="{ 'input-error': formUtils.isValidField(myForm, 'email') }"
+          >
 
-  <!-- Contraseña -->
-  <div class="mb-3">
-    <label>Contraseña</label>
-    <input
-      type="password"
-      formControlName="password"
-      class="form-control"
-      placeholder="******">
+          @if (formUtils.isValidField(myForm, 'email')) {
+            <span class="text-error text-sm mt-1">
+              {{ formUtils.getFieldError(myForm, 'email') }}
+            </span>
+          }
+        </div>
 
-    @if (formUtils.isValidField(myForm, 'password')) {
-      <span class="form-text text-danger">
-        {{ formUtils.getFieldError(myForm, 'password') }}
-      </span>
-    }
-  </div>
+        <div class="form-control">
+          <label class="label" for="password">
+            <span class="label-text">Contraseña (mín. 6)</span>
+          </label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="******"
+            class="input input-bordered w-full"
+            [ngClass]="{ 'input-error': formUtils.isValidField(myForm, 'password') }"
+          >
 
-  <!-- Mensaje de error general -->
-  @if (errorMessage()) {
-    <p class="text-danger">{{ errorMessage() }}</p>
-  }
+          @if (formUtils.isValidField(myForm, 'password')) {
+            <span class="text-error text-sm mt-1">
+              {{ formUtils.getFieldError(myForm, 'password') }}
+            </span>
+          }
+        </div>
 
-  <button class="btn btn-primary float-end" type="submit">Ingresar</button>
-</form>
+        @if (errorMessage()) {
+          <div class="alert alert-error text-sm mt-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>{{ errorMessage() }}</span>
+          </div>
+        }
+
+        <div class="card-actions justify-center pt-6">
+          <button
+            type="submit"
+            class="btn btn-primary w-full"
+            [disabled]="myForm.invalid"
+          >
+            Ingresar
+          </button>
+        </div>
+      </form>
+    </header>
+  </article>
+</section>
