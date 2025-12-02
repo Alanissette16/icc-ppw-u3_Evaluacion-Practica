@@ -18,7 +18,7 @@
 
       <figure class="w-full md:w-1/3 p-6 flex flex-col items-center bg-gray-100 border-r border-base-300">
         <img
-          [src]="pokemon.sprites?.front_default"
+          [src]="pokemon.sprites.front_default"
           [alt]="pokemon.name"
           class="w-48 h-48 object-contain bg-white rounded-full shadow-lg border-4 border-primary mb-4"
         />
@@ -52,9 +52,9 @@
           <div class="grid grid-cols-2 gap-4 text-gray-700">
             <div><span class="font-bold">Altura:</span> {{ pokemon.height / 10 }} m</div>
             <div><span class="font-bold">Peso:</span> {{ pokemon.weight / 10 }} kg</div>
-            <div><span class="font-bold">Experiencia Base:</span> {{ pokemon.base_experience ?? 'N/A' }}</div>
-            <div><span class="font-bold">Número de Movimientos:</span> {{ pokemon.moves?.length ?? 'N/A' }}</div>
-            <div><span class="font-bold">Orden Pokédex:</span> {{ pokemon.order ?? 'N/A' }}</div>
+            <div><span class="font-bold">Experiencia Base:</span> {{ pokemon.base_experience }}</div>
+            <div><span class="font-bold">Número de Movimientos:</span> {{ pokemon.moves.length }}</div>
+            <div><span class="font-bold">Orden Pokédex:</span> {{ pokemon.order }}</div>
           </div>
 
           <div class="divider"></div>
@@ -62,7 +62,7 @@
           <h3 class="text-xl font-semibold text-secondary">Estadísticas Principales</h3>
 
           <div class="space-y-3">
-            @for (statContainer of pokemon.stats?.slice(0, 3); track statContainer.stat.name) {
+            @for (statContainer of pokemon.stats.slice(0, 3); track statContainer.stat.name) {
               <div class="flex justify-between items-center text-sm">
                 <span class="capitalize font-medium w-1/4">
                   {{ formatName(statContainer.stat.name) }}:
